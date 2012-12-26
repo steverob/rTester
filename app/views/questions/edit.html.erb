@@ -1,0 +1,7 @@
+<div class="span10 offset1"><%- model_class = Question -%>
+<div class="page-header">
+  <h3><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+                                   :default => "Edit #{model_class.model_name.human}") %></h3>
+</div>
+<%= render :partial => 'form' %>
+</div>

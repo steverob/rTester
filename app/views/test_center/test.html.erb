@@ -1,0 +1,68 @@
+<% if @test.timing!=0 %>
+  <script>
+  $(document).ready(function(){
+  var now=new Date();
+  if($('#timeup').html()==0){
+    stopTest();
+  }
+  now.setMinutes(now.getMinutes()+<%=@time%>);
+  $('#time').countdown({until:now, format: 'MS',onExpiry:stopTest});
+
+  });
+
+  function stopTest(){
+    $('#time').html('<center><h4>Time\'s up!</h4></center>');
+    $('#timeup').html('0');
+    $('input.radio').attr("onclick","return false;");
+
+  }
+  </script>
+<%end%>
+
+<div class="row">
+<div class="span3 scroller  affix"  style="padding: 4px 4px 4px 4px;">
+<% if @test.timing!=0 %><div id="time" class="bg"></div><%end%>
+<br>
+  <table class="table table-condensed " id="questions-nav">
+  <caption><strong>Questions Navigation</strong></caption>
+      <% @q_array.each do |row|%>
+        <tr>
+          <% row.each do |qn| %>
+            <td style="text-align: center;"><%= raw('<button class="btn btn-danger qn-nav" id="'+qn.to_s+'">'+qn.to_s+'</button>') unless qn.nil?%></td>
+          <%end%>
+        </tr>
+      <%end%>
+  </table>
+</div>
+<div id="confirmDiv"></div>
+<div class="span9 offset3">
+<h4 class="pull-right"><span class="badge badge-important">Unanswered</span> | <span class="badge badge-warning">Marked for review</span> | <span class="badge badge-success">Answered</span> | No. of Questions: <%= @questions.count %> <% if @test.timing!=0 %>| Timing: <%=@test.timing %><%end%> | Negative Marking: <% if @test.negative_marking %><%="Yes" %><%else%>No<%end%></h4><br>
+
+<%= form_tag url_for(:controller=>"test_center",:action=>"wait") ,:id=>'answers-form' do %>
+<% for question in @questions %>
+  <%= raw('<div id="q_'+question[0].to_s+'">') %>
+    <hr class="double-gradient"/>
+    <span class="badge badge-important"><h5 class="question-no">Q <%=question[0]%></h5></span>&nbsp;&nbsp;&nbsp;<%=question[1][0].test_question.question.question %>
+    <br /><br />
+    <table class="table table-condensed">
+      <% question[1].each_with_index do |ans,index| %>
+        <% if ans.class==Answer %>
+            <tr>
+              <td><%=@alpha[index]%>.</td>
+              <td><strong><%=ans.answer%></strong></td>
+              <td><%= raw('<input type="radio"
+  class="'+question[0].to_s+' radio" name="answer['+question[1][0].id.to_s+']" value="'+ans.id.to_s+'"/>') %></td>
+            </tr>
+        <%end%>
+      <%end%>
+      <%= raw('<input class="hidden-radio" hidden="true" type="radio"  name="answer['+question[1][0].id.to_s+']" value="-1"/>') %>
+    </table>
+  </div>
+<%end%>
+<%end%>
+<center><button class="btn btn-primary confirmButton" >Submit Answers</button></center>
+</div>
+<br><br><br>
+<%= @time %>
+<div style='display:none' id="timeup"><% if @time==0 %>0<%else%>1<%end%></div>
+..

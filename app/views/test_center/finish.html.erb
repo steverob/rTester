@@ -1,0 +1,26 @@
+<center><div class="span5 offset3">
+  <div class="page-header">
+    <h3>Test Complete!</h3>
+</div>
+<p>You have successfully completed the test. Please proceed according to the instructions given by the invigilators. Thank you!</p>
+<br><% if @test.show_score %>
+<table class="table table-nonfluid">
+  <caption>Results</caption>
+  <tr>
+    <th>No. of Correct</th>
+    <td><%= @result.no_correct %></td>
+  </tr>
+  <tr>
+    <th>No. of Incorrect</th>
+    <td><%= @result.no_incorrect %></td>
+  </tr>
+  <tr>
+    <th>No. of Unanswered</th>
+    <td><%= @result.no_unanswered %></td>
+  </tr>
+  <tr>
+    <th>Score</th>
+    <td><%= @result.score %></td>
+  </tr>
+</table><%end%>
+</div></center>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  test_question_id: 1
+  answer_id: 1
+  candidate_id: 1
+
+two:
+  test_question_id: 1
+  answer_id: 1
+  candidate_id: 1

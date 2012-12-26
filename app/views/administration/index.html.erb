@@ -1,0 +1,16 @@
+<div class="span4 offset4">
+  <h2>rTester</h2><p class="lead"> Administration</p>
+  <hr/>
+  <br>
+  <div class="">
+  <blockquote>
+    <p>Manage Tests &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<%= link_to raw("Go <i class='icon-chevron-right'></i>"),online_tests_path,:class=>"btn btn-info pull-right" %></p>
+  </blockquote>
+  <blockquote>
+    <p>Manage Questions &nbsp;&nbsp; <%= link_to raw("Go <i class='icon-chevron-right'></i>"),questions_path,:class=>"btn btn-info pull-right" %></p>
+  </blockquote>
+  <hr>
+  <div class="well"><%= link_to raw("<i class='icon-edit'></i>Change Admin password"),admin_edit_url %><br><%= link_to raw("<i class='icon-share'></i>Logout"),logout_url %></div>
+
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<script>
+jQuery(document).ready(function() {
+  $.post( <%=raw('"/test_center/evaluate/"') %>,<%= raw(@data.to_json)%> ,function(data) {
+    window.location.replace(<%=raw('"/test_center/finish"') %>);
+  });
+});
+</script>
+<div class="span6 offset3">
+<br>
+<legend>Please wait while the test is being evaluated...</h3></legend>
+<center><div class="wait"><br></div></center>
+<br>
+<br>
+</div>

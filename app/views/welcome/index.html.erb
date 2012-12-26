@@ -1,0 +1,32 @@
+<div class="span10 offset1">
+<div class="page-header">  <h1>Welcome!</h1></div>
+<center><legend >Open Tests</legend></center>
+
+  <center>
+  <% if @tests.nil?||@tests.count==0 %>
+      <p>No Open tests currently available</p>
+  <%else%>
+    <table class="table">
+     <thead>
+      <tr>
+        <th>Test Name/ID</th>
+        <th>Date Created</th>
+        <th></th>
+      </tr>
+     </thead>
+     <tbody>
+      <% for test in @tests %>
+        <tr>
+          <td><%=test.name %></td>
+          <td><%=pretty_date_time(test.created_at)%></td>
+          <td><%= link_to "Enter",{:controller=>"candidates",:action=>'new',:id=>test.id},:class=>"btn btn-primary btn-small" %></td>
+        </tr>
+
+     </tbody>
+    </table>
+    <% end %>
+
+    <%end%>
+  </center>
+
+</div>

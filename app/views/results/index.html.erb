@@ -1,0 +1,31 @@
+<div class="span10 offset1"><%- model_class = Result -%>
+<div class="page-header">
+  <h3>Test Results | <%= @results[0].online_test.name %></h1>
+</div><center>
+<table class="table table-condensed table-striped table-nonfluid">
+  <thead>
+    <tr>
+      <th>Roll No.</th>
+      <th>Candidate Name</th>
+      <th><%= model_class.human_attribute_name(:score) %></th>
+      <th><%= model_class.human_attribute_name(:rank) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.candidate.roll_no %></td>
+        <td><%= result.candidate.name %></td>
+        <td><%= result.score %></td>
+        <td><%= result.rank %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @results,:renderer => BootstrapPagination::Rails %>
+</center>
+<%= link_to raw("<i class='icon-chevron-left'></i>&nbsp;Back to Test"),
+            online_test_path(@test_id),
+            :class => 'btn btn-primary' %>&nbsp;&nbsp;&nbsp;<%= link_to raw("<i class='icon-print'></i>&nbsp;Print Result"),
+            url_for(:controller=>"results",:action=>"print",:id=>@test_id),
+            :class => 'btn btn-info' %> </div>

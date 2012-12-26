@@ -1,0 +1,16 @@
+<div class="span10 offset1">
+
+<div class="page-header">
+  <h1>Tests Management</h1>
+</div>
+<div id="tests_list">
+  <%= render 'online_tests' %>
+</div>
+
+
+<%= link_to "Back to Administration",url_for(:controller=>"administration",:action=>"index"),:class=>"btn btn-warning" %> &nbsp;&nbsp;
+<%= link_to "Create a new Test",
+            new_online_test_path,
+            :class => 'btn btn-primary' %>
+
+</div>

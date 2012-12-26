@@ -1,0 +1,13 @@
+<div class="span10 offset1">
+<div class="page-header">
+  <h3>Questions for the Test</h3>
+</div>
+<dl class="dl-horizontal">
+  <dt><strong>Test Name:</strong></dt>
+  <dd><%= @test.name %></dd>
+  <dt><strong>Test Tags:</strong></dt>
+  <dd><%=@test.tag_list%></dd>
+</dl>
+<%= render 'questions' %>
+<%=link_to raw("<i class='icon-chevron-left'></i>&nbsp;Back to Test"), online_test_path(@test),:class=>"btn btn-primary" %>
+</div>

@@ -1,0 +1,63 @@
+<div class="span10 offset1">
+<%- model_class = OnlineTest -%>
+<div class="page-header">
+  <h3>Test Details</h3>
+</div>
+<div class="row">
+<div class="span5 pull-left">
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @online_test.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:created_by) %>:</strong></dt>
+  <dd><%= @online_test.created_by %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:timing) %>:</strong></dt>
+  <dd><% if @online_test.timing ==0%>No Timing<%else%><%= @online_test.timing.to_s+" minutes" %><%end%></dd>
+  <dt><strong><%= "No. of Questions"%>:</strong></dt>
+  <dd><%= @online_test.no_of_questions %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:tag_list) %>:</strong></dt>
+  <dd><%= @online_test.tag_list %></dd>
+  <hr>
+  <dt><strong>Correct Answer:</strong></dt>
+  <dd><%= @online_test.correct_score %> point(s)</dd>
+  <dt><strong><%= model_class.human_attribute_name(:negative_marking) %>:</strong></dt>
+  <dd><% if @online_test.negative_marking %><%="Enabled"%><%else%><%="Disabled"%><%end%></dd>
+  <% if @online_test.negative_marking %>
+    <dt><strong>Wrong Answer:</strong></dt>
+    <dd><%= @online_test.wrong_score %> point(s)</dd>
+  <%end%>
+  <hr />
+  <dt><strong><%= "Test Open" %>:</strong></dt>
+  <dd><% if @online_test.open %><%="Yes"%><%else%><%="No"%><%end%></dd>
+  <dt><strong>Candidates Entered:</strong></dt>
+  <dd><%= @takers %></dd>
+  <hr />
+  <dt><strong>Test Link:</strong></dt>
+  <dd><%= root_url+'test/'+@online_test.id.to_s %></dd>
+
+</dl>
+</div>
+<div class="span3 pull-right">
+<div class="well">
+<ul class="nav nav-list">
+  <li class="nav-header">Test Options</li>
+  <li><%= link_to raw("<i class=' icon-pencil'></i>Edit"),
+              edit_online_test_path(@online_test)%></li>
+  <li><%= link_to raw("<i class=' icon-tasks'></i>Questions"),
+              url_for(:controller=>"questions",:action=>"online_test_questions",:id=>@online_test.id)%></li>
+  <li><%= link_to raw("<i class='icon-list-alt'></i>View Results"),
+              url_for(:controller=>"results",:action=>"index",:id=>@online_test.id)%></li>
+  <% if @online_test.open %><li><%= link_to raw("<i class=' icon-remove-circle'></i>Close Test"),
+              url_for(:controller=>"online_tests",:action=>"close",:id=>@online_test.id),:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }%></li><%end%>
+  <li><%= link_to raw("<i class=' icon-trash'></i>Delete"),
+              online_test_path(@online_test),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }%></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="form-actions">
+  <%= link_to raw("<i class=' icon-chevron-left'></i>&nbsp;Back to Tests"),
+              online_tests_path, :class => 'btn btn-primary'  %>
+</div>
+</div>

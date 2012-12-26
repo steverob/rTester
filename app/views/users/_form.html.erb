@@ -1,0 +1,24 @@
+ <%= form_for @user ,:html=>{:class=>"form form-horizontal"} do |f| %>
+
+  <div class="control-group">
+    <%= f.label :username,:class=>"control-label" %>
+    <div class="controls">
+      <%= f.text_field :username,:class=>"input",:required=>"true",:pattern=>"[a-zA-Z0-9]{5}[a-zA-Z0-9]*",:title=>"Must be atleast 5 characters long!" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password ,:class=>"control-label"%>
+    <div class="controls">
+      <%= f.password_field :password,:class=>"input",:pattern=>"[a-zA-Z0-9]{5}[a-zA-Z0-9]*",:title=>"Must be atleast 5 characters long!" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password_confirmation ,:class=>"control-label"%>
+    <div class="controls">
+      <%= f.password_field :password_confirmation,:class=>"input",:pattern=>"[a-zA-Z0-9]{5}[a-zA-Z0-9]*",:title=>"Must be atleast 5 characters long!" %>
+    </div>
+  </div>
+  <div class="form-actions pull-left"><%= link_to "Cancel",administration_url,:class=>"btn btn-important" %>&nbsp;&nbsp;<%=  f.submit nil,:class=>"btn btn-primary" %></div>
+<% end %>  

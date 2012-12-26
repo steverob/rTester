@@ -1,0 +1,89 @@
+
+
+<%= form_for @online_test, :html => { :class => 'form-horizontal' ,:id=>"test-form"} do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'input',:pattern=>"[A-Za-z ]{3}[A-Za-z ]*", :title=>"Must be more than 3 characters!",:required=>"required",:autofocus=>"autofocus" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :created_by, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :created_by, :class => 'input',:pattern=>"[A-Za-z ]{3}[A-Za-z ]*", :title=>"Must be more than 3 characters!",:required=>"required" %>
+    </div>
+  </div>
+  <hr />
+  <% if !@hide %>
+  <div class="control-group">
+    <%= f.label "Marks for correct answer", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :correct_score, :class => 'input',:required=>"required",:pattern=>"[0-9]*\.?[0-9]+",:title=>"Please enter a proper value!" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :negative_marking, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :negative_marking, :class => 'check_box',:id=>"negative-marking" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label "Negative marks for incorrect answer", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :wrong_score, :class => 'input',:id=>"neg-marks",:value=>'0.0',:readonly=>'readonly',:required=>"required",:pattern=>"[0-9]*\.?[0-9]+",:title=>"Please enter a proper value!"  %>
+    </div>
+  </div>
+  <hr />
+  <div class="control-group">
+    <%= f.label :timing, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :timing, :class => 'number_field input',:required=>"required" %>
+      <p class="help-block">in minutes (enter 0 to disable timing)</p>
+    </div>
+  </div>
+<hr>
+
+  <div class="control-group">
+    <%= f.label "Select Required Tags", :class => 'control-label' %>
+    <div class="controls">
+      <select id="jquery-tagbox-select-options">
+       <% for tag in @tags %>
+        <%= raw("<option value='"+tag.name+"'>"+tag.name+"</option>") %>
+       <%end%>
+      </select><!--select#-->
+      <%= f.text_field :tag_list, :id=>"jquery-tagbox-select", :class => 'input'%>
+    </div>
+  </div>
+
+<hr>
+  <div class="control-group">
+    <%= f.label :no_of_questions, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :no_of_questions, :class => 'number_field',:required=>"required"%>
+    </div>
+  </div>
+<hr />
+<% elsif @hide %>
+  <div class="control-group">
+    <%= f.label "Select Required Tags", :class => 'control-label' %>
+    <div class="controls">
+      Certain details cannot be modified because test has commenced!
+    </div>
+  </div>
+ <%end%>
+<div class="control-group">
+    <%= f.label "Show score at end of test?", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :show_score, :class => 'check_box'%>
+    </div>
+  </div>
+
+
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                online_tests_path, :class => 'btn' %>
+  </div>
+<% end %>

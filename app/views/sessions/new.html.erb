@@ -1,0 +1,15 @@
+
+ <div class="login-form">
+                  <h2>Login</h2>
+                  <%= form_tag sessions_path do %>
+                      <fieldset>
+                          <div class="clearfix">
+                              <%= text_field_tag :username, params[:username],:placeholder=>"Username" %>
+                          </div>
+                          <div class="clearfix">
+                             <input type="password" placeholder="Password" name="password"/>
+                          </div>
+                          <%= submit_tag "Log in",:class=>"btn btn-primary" %>
+                      </fieldset>
+                  <% end %>
+              </div>

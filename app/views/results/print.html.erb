@@ -1,0 +1,25 @@
+<center><h1><%= @results[0].online_test.name %></h1>
+  <h3>Results</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Roll No.</th>
+      <th>Candidate Name</th>
+      <th>Score</th>
+      <th>Rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.candidate.roll_no %></td>
+        <td><%= result.candidate.name %></td>
+        <td><%= result.score %></td>
+        <td><%= result.rank %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table></center>
+<br><br>
+<div class="noPrint">
+   <center><%= link_to "Back",online_test_path(@test_id) %>&nbsp;&nbsp;<a href="#" onClick=" window.print(); return false">Print this page</a></center></div>

@@ -1,0 +1,61 @@
+<script>
+$(function() {
+  var $unique = $('.check_box');
+  $unique.click(function() {
+      $unique.removeAttr('checked');
+      $(this).attr('checked', true);
+  });
+  jQuery(".tagManager").tagsManager({
+    prefilled: '<%= @q_tags.join(',') %>',
+    typeahead: true,
+    typeaheadSource: <%= raw(@tags.join(",").split(","))%>
+  });
+
+});
+</script>
+
+<%= form_for @question, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :question, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :question, :class => 'text_area span8',:rows=>5,:required=>"required",:title=>"Must be alteast 5 characters long" %>
+    </div>
+  </div>
+  <div class="control-group">
+  <%= f.label "Answers", :class => 'control-label' %>
+  <div class="controls">
+  <table class="table table-nonfluid span7">
+    <tr>
+      <th><center>Choices</center></th>
+      <th><center>Is Correct? (Choose only one.)</center></th>
+    </tr>
+    <%- selected=false -%>
+    <%= f.fields_for :answers do |form| %>
+      <tr>
+        <td><%= form.text_field :answer, :class=> 'text_field row-fluid',:required=>"required"%></td>
+        <% if !selected %>
+          <td><center><%= form.check_box :is_correct, :class=>"check_box",:checked=>"checked" %></center></td>
+          <%- selected=true -%>
+        <%else%>
+          <td><center><%= form.check_box :is_correct, :class=>"check_box" %></center></td>
+        <%end%>
+      </tr>
+    <%end%>
+  </table>
+  </div>
+  </div>
+  <div class="control-group">
+  <%= f.label "Tags", :class => 'control-label' %>
+  <div class="controls">
+    <%= text_field_tag :tags,"",:class=>"tagManager",:autocomplete=>"off"%>
+    <p class="help-block">seperate with commas ','</p>
+  </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                questions_path, :class => 'btn' %>
+  </div>
+<% end %>

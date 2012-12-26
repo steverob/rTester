@@ -1,0 +1,32 @@
+<%- model_class = Question -%>
+<div>
+<strong>No. of Questions available: </strong><%=@questions.length %>
+</div>
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:question) %></th>
+      <th><%= "Tags" %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.question, question_path(question) %></td>
+        <td><%= question.tags.join(',') %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_question_path(question), :class => 'btn btn-primary btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      question_path(question),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @questions,:renderer => BootstrapPagination::Rails %>

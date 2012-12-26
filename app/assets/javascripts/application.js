@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
 $(function(){
 $("#jquery-tagbox-select").tagBox({
         enableDropdown: true,

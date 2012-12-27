@@ -23,7 +23,7 @@
   <dd><% if @online_test.negative_marking %><%="Enabled"%><%else%><%="Disabled"%><%end%></dd>
   <% if @online_test.negative_marking %>
     <dt><strong>Wrong Answer:</strong></dt>
-    <dd><%= @online_test.wrong_score %> point(s)</dd>
+    <dd>-<%= @online_test.wrong_score %> point(s)</dd>
   <%end%>
   <hr />
   <dt><strong><%= "Test Open" %>:</strong></dt>

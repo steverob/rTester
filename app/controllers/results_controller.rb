@@ -5,11 +5,11 @@ class ResultsController < ApplicationController
   def index
     @test_id=params[:id]
     @results = Result.where(:online_test_id=>params[:id]).order('score desc').paginate(:per_page=>15,:page=>params[:page])
-    Result.calculate_rank(@test_id)
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @results }
+    if @results.length==0
+      flash[:error]="Results not available!"
+      redirect_to online_test_path(@test_id)
     end
+    Result.calculate_rank(@test_id)
   end
 
   def print

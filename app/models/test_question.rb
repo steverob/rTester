@@ -9,12 +9,13 @@ class TestQuestion < ActiveRecord::Base
         TestQuestion.delete_all(:online_test_id=>test.id)
       end
       tags=test.tag_list.split(",")
-      questions=Question.select('questions.*,random()').tagged_with(tags,:any=>true).order("RANDOM()").limit(test.no_of_questions)
+      questions=Question.tagged_with(tags,:any=>true)
+      questions=questions.select('questions.*,RANDOM()').order("RANDOM()").limit(test.no_of_questions)
       test.questions=questions
   end
 
   def self.generate_candidate_questions(candidate_id,test_id)
-    @questions=TestQuestion.select('questions.*,random()').where(:online_test_id=>test_id).order('RANDOM()')
+    @questions=TestQuestion.select("test_questions.*,RANDOM()").where(:online_test_id=>test_id).order('RANDOM()')
     @questions.each do |q|
       CandidateAnswer.create(:candidate_id=>candidate_id,:test_question_id=>q.id)
     end

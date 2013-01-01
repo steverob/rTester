@@ -5,7 +5,8 @@
   if($('#timeup').html()==0){
     stopTest();
   }
-  now.setMinutes(now.getMinutes()+<%=@time%>);
+  now.setMinutes(now.getMinutes()+<%=@min%>);
+  now.setSeconds(now.getSeconds()-<%=@sec%>);
   $('#time').countdown({until:now, format: 'MS',onExpiry:stopTest});
 
   });
@@ -63,6 +64,9 @@
 <center><button class="btn btn-primary confirmButton" >Submit Answers</button></center>
 </div>
 <br><br><br>
-<%= @time %>
+<%= @time %>|
+<%= @min %>|
+<%= @sec %>
+
 <div style='display:none' id="timeup"><% if @time==0 %>0<%else%>1<%end%></div>
 ..

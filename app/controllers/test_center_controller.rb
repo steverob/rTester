@@ -24,8 +24,10 @@ class TestCenterController < ApplicationController
       if @test.timing==0
         @time=-1
       else
-        @time=@test.timing-(Time.now.min-@result.starttime.min)
-        if @time > @test.timing || @time < 0
+        @min=@test.timing-((Time.now-@result.starttime)/60).to_i
+        @sec=((Time.now-@result.starttime)%60).to_i
+        @time=1
+        if @min > @test.timing || @min <= 0
           @time=0
         end
       end

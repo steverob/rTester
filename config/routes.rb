@@ -1,20 +1,22 @@
 Rt::Application.routes.draw do
-  resources :online_tests
 
 
-  resources :results
   resources :sessions
-
-
   resources :candidates
 
-
-
-  resources :questions
-
-
   match 'test/:id' =>'candidates#new'
+
   match 'administration' => 'administration#index'
+
+  scope "/administration" do
+    resources :online_tests
+    resources :questions
+    resources :results
+    match "/results/print/:id"=>"results#print" ,:as=>"print_results"
+    match "/questions/test_questions/:id"=> "questions#online_test_questions",:as=>"test_questions"
+    match "/online_tests/close/:id"=>"online_tests#close",:as=>"close_test"
+  end
+
   match 'login' => 'sessions#new'
   match 'logout' => 'sessions#destroy'
   match 'admin/edit' => 'users#edit'
@@ -75,5 +77,5 @@ Rt::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-   match ':controller(/:action(/:id))(.:format)'
+  #match ':controller(/:action(/:id))(.:format)'
 end

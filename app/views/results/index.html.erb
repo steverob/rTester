@@ -31,5 +31,5 @@
 <%= link_to raw("<i class='icon-chevron-left'></i>&nbsp;Back to Test"),
             online_test_path(@test_id),
             :class => 'btn btn-primary' %>&nbsp;&nbsp;&nbsp;<%= link_to raw("<i class='icon-print'></i>&nbsp;Print Result"),
-            url_for(:controller=>"results",:action=>"print",:id=>@test_id),
+            print_results_path(@test_id),
             :class => 'btn btn-info' %> </div>

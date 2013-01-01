@@ -24,6 +24,13 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answers=@question.answers
     @tags=@question.tag_list.join(",")
+
+    if request.referer=~/test_questions/
+      @test_questions=true
+    else
+      @test_questions=false
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @question }
@@ -105,6 +112,8 @@ class QuestionsController < ApplicationController
     end
     @questions=@questions.paginate(:page=>params[:page],:per_page=>15)
     @test=OnlineTest.find(params[:id])
+
+
     respond_to do |format|
       format.html
       format.json { render json: @questions }

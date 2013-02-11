@@ -29,7 +29,7 @@
       <% @q_array.each do |row|%>
         <tr>
           <% row.each do |qn| %>
-            <td style="text-align: center;"><%= raw('<button class="btn btn-danger qn-nav" id="'+qn.to_s+'">'+qn.to_s+'</button>') unless qn.nil?%></td>
+            <td style="text-align: center;"><%= raw('<button class="btn  btn-small btn-danger qn-nav" id="'+qn.to_s+'">'+qn.to_s+'</button>') unless qn.nil?%></td>
           <%end%>
         </tr>
       <%end%>

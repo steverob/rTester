@@ -45,7 +45,7 @@ class TestCenterController < ApplicationController
         end
         count+=1
       end
-      @q_array=@questions.keys.in_groups_of(5)
+      @q_array=@questions.keys.in_groups_of(4)
       @alpha=['Q','A','B','C','D']
     end
 

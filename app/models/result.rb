@@ -39,22 +39,27 @@ class Result < ActiveRecord::Base
 
   def self.calculate_rank(test_id)
      results=Result.where(:online_test_id=>test_id).order('score desc')
-     a=results[0].score+1
-      if(results.count()!=0)
-        rank=1
-        count=0
-        prev_score=results[0].score
-        results.each do |result|
-          count+=1
-          if(result.score==prev_score)
-            result.rank=rank
-          else
-            result.rank=count
-            rank=count
+     if results.length==0
+       return results
+     else
+       a=results[0].score+1
+        if(results.count()!=0)
+          rank=1
+          count=0
+          prev_score=results[0].score
+          results.each do |result|
+            count+=1
+            if(result.score==prev_score)
+              result.rank=rank
+            else
+              result.rank=count
+              rank=count
+            end
+            prev_score=result.score
+            result.save
           end
-          prev_score=result.score
-          result.save
         end
+        results
       end
   end
 

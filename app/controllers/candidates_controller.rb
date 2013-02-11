@@ -33,7 +33,7 @@ class CandidatesController < ApplicationController
         TestQuestion.generate_candidate_questions(@candidate.id,session[:test_id])
         Result.generate_result(@candidate.id,session[:test_id])
         flash[:notice]='Successfully entered the Test!'
-        format.html { redirect_to :controller=>"test_center",:action=>"instructions" }
+        format.html { redirect_to instructions_path }
       else
         format.html { render action: "new" }
         format.json { render json: @candidate.errors, status: :unprocessable_entity }

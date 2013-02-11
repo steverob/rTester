@@ -1,0 +1,8 @@
+#edit_admin_details.modal.fade
+  .modal-header
+    %a.close{ data: {dismiss:"modal"}} &times;
+    %h3 Edit Admin details
+  .modal-body
+    = render 'users/form'
+  .modal-footer
+    %button.btn{ data:{dismiss: "modal"}, aria:{ hidden: "true"}} Close

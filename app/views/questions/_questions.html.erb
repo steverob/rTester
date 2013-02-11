@@ -14,7 +14,7 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= link_to question.question, question_path(question) %></td>
+        <td><%= link_to truncate(question.question,:seperator=>" ",:length=>80), question_path(question) %></td>
         <td><%= question.tags.join(',') %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

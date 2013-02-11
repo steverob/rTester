@@ -8,6 +8,11 @@ Rt::Application.routes.draw do
 
   match 'administration' => 'administration#index'
 
+  match '/test_center/instructions' => 'test_center#instructions',:as=>"instructions"
+  match '/test_center/test' => 'test_center#test',:as=>"test"
+  match '/test_center/wait' => 'test_center#wait',:as=>"wait"
+  match '/test_center/finish' => 'test_center#finish'
+  match "/test_center/evaluate" => 'test_center#evaluate'
   scope "/administration" do
     resources :online_tests
     resources :questions
@@ -15,11 +20,13 @@ Rt::Application.routes.draw do
     match "/results/print/:id"=>"results#print" ,:as=>"print_results"
     match "/questions/test_questions/:id"=> "questions#online_test_questions",:as=>"test_questions"
     match "/online_tests/close/:id"=>"online_tests#close",:as=>"close_test"
+    match 'login' => 'sessions#new'
+    match 'logout' => 'sessions#destroy'
+    match 'administration/edit' => 'users#edit',:as=>"admin_edit"
   end
 
-  match 'login' => 'sessions#new'
-  match 'logout' => 'sessions#destroy'
-  match 'admin/edit' => 'users#edit'
+
+
 
   resources :users
   # The priority is based upon order of creation:

@@ -1,0 +1,21 @@
+.span4.offset4
+  %h2 rTester
+  %p.administration Administration
+
+  %hr
+  %br
+
+  %blockquote
+    %p Manage Tests &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; #{link_to raw("Go <i class='icon-chevron-right'></i>"),online_tests_path,:class=>"btn btn-info pull-right"}
+
+  %blockquote
+    %p Manage Questions &nbsp;&nbsp; #{link_to raw("Go <i class='icon-chevron-right'></i>"),questions_path,:class=>"btn btn-info pull-right"}
+
+  %hr
+  .well
+    =link_to raw("<i class='icon-edit'></i>Change Admin password"),'#edit_admin_details',data:{ toggle:'modal'}
+    %br
+    = link_to raw("<i class='icon-share'></i>Logout"),logout_path
+
+
+= render 'edit_admin_modal'

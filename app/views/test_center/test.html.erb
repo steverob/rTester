@@ -39,7 +39,7 @@
 <div class="span9 offset3">
 <h4 class="pull-right"><span class="badge badge-important">Unanswered</span> | <span class="badge badge-warning">Marked for review</span> | <span class="badge badge-success">Answered</span> | No. of Questions: <%= @questions.count %> <% if @test.timing!=0 %>| Timing: <%=@test.timing %><%end%> | Negative Marking: <% if @test.negative_marking %><%="Yes" %><%else%>No<%end%></h4><br>
 
-<%= form_tag url_for(:controller=>"test_center",:action=>"wait") ,:id=>'answers-form' do %>
+<%= form_tag wait_path ,:id=>'answers-form' do %>
 <% for question in @questions %>
   <%= raw('<div id="q_'+question[0].to_s+'">') %>
     <hr class="double-gradient"/>
@@ -51,7 +51,7 @@
             <tr>
               <td><%=@alpha[index]%>.</td>
               <td><strong><%=ans.answer%></strong></td>
-              <td><%= raw('<input type="radio"
+              <td class="pull-right"><%= raw('<input type="radio"
   class="'+question[0].to_s+' radio" name="answer['+question[1][0].id.to_s+']" value="'+ans.id.to_s+'"/>') %></td>
             </tr>
         <%end%>
@@ -64,9 +64,6 @@
 <center><button class="btn btn-primary confirmButton" >Submit Answers</button></center>
 </div>
 <br><br><br>
-<%= @time %>|
-<%= @min %>|
-<%= @sec %>
 
 <div style='display:none' id="timeup"><% if @time==0 %>0<%else%>1<%end%></div>
 ..

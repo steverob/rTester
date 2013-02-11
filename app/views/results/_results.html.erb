@@ -1,0 +1,24 @@
+<center>
+
+<table class="table table-condensed table-striped table-nonfluid">
+  <thead>
+    <tr>
+      <th>Roll No.</th>
+      <th>Candidate Name</th>
+      <th><%= "Score" %></th>
+      <th><%= "Rank" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.candidate.roll_no %></td>
+        <td><%= result.candidate.name %></td>
+        <td><%= result.score %></td>
+        <td><%= result.rank %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @results,:renderer => BootstrapPagination::Rails %>
+</center>

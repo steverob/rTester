@@ -11,11 +11,11 @@
     <li>Questions can be marked for review by clicking on the <em>question number</em> near the question and the question will be marked in yellow.<br> Eg: <span class="badge badge-warning"><h5 class="question-no">Q 1</h5></span></li><br>
     <li>Each correct answer fetches <strong><%=@test.correct_score%></strong> points.</li>
     <li><% if @test.negative_marking %>Each wrong answer would reduce the score by <strong><%= @test.wrong_score %></strong> points.<%else%>There is <strong>no negative marking</strong> for wrong answers.<%end%></li>
-    <li><% if @test.timing==0 %>There is no time limit and you can submit whenever you want.<%else%>The time limit for the test is <%=@test.timing%> mins.<%end%></li>
+    <li><% if @test.timing==0 %>There is <strong>no time limit</strong> and you can submit whenever you want.<%else%>The time limit for the test is <strong><%=@test.timing%> mins.</strong><%end%></li>
     <li><strong>DO NOT REFRESH THE PAGE OR USE THE BACK BUTTON. YOU WILL LOSE ALL YOUR ANSWERS!</string></li>
 
   </ul>
 
   <div class="form-actions">
-  <%= link_to raw("<i class='icon-chevron-left'></i> Edit Details "),edit_candidate_path(@candidate),:class=>"btn btn-warning btn-medium pull-left"%><%= link_to raw("Proceed to Test <i class='icon-chevron-right'></i>"),{:controller=>"test_center",:action=>"test"},:class=>"btn btn-primary btn-medium pull-right"%></div>
+  <%= link_to raw("<i class='icon-chevron-left'></i> Edit Details "),edit_candidate_path(@candidate),:class=>"btn btn-warning btn-medium pull-left"%><%= link_to raw("Proceed to Test <i class='icon-chevron-right'></i>"),test_path,:class=>"btn btn-primary btn-medium pull-right"%></div>
 </div>

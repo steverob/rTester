@@ -20,5 +20,5 @@
       <%= f.password_field :password_confirmation,:class=>"input",:pattern=>"[a-zA-Z0-9]{5}[a-zA-Z0-9]*",:title=>"Must be atleast 5 characters long!" %>
     </div>
   </div>
-  <div class="form-actions pull-left"><%= link_to "Cancel",administration_url,:class=>"btn btn-important" %>&nbsp;&nbsp;<%=  f.submit nil,:class=>"btn btn-primary" %></div>
+  <%=  f.submit nil,:class=>"btn btn-primary" %>
 <% end %>  

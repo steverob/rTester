@@ -17,6 +17,7 @@ gem 'thin'
 gem 'twitter-bootstrap-rails', '>= 2.1.6'
   gem "less-rails"
   gem 'sass-rails',   '~> 3.2.3'
+gem 'haml'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -4,12 +4,13 @@ class ResultsController < ApplicationController
   layout "out", :except=>[:index]
   def index
     @test_id=params[:id]
-    @results = Result.where(:online_test_id=>params[:id]).order('score desc').paginate(:per_page=>15,:page=>params[:page])
-    if @results.length==0
+    results_count = Result.where(:online_test_id=>params[:id]).count
+    if results_count==0
       flash[:error]="Results not available!"
       redirect_to online_test_path(@test_id)
     else
       Result.calculate_rank(@test_id)
+      @results = Result.where(:online_test_id=>params[:id]).order('score desc').paginate(:per_page=>15,:page=>params[:page])
     end
   end
 

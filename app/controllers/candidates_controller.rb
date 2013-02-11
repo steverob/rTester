@@ -26,7 +26,7 @@ class CandidatesController < ApplicationController
   # POST /candidates
   # POST /candidates.json
   def create
-      if Candidate.find_by_roll_no(params[:candidate][:roll_no]).nil?
+      if OnlineTest.find(session[:test_id]).candidates.select{ |c| c.roll_no==params[:candidate][:roll_no] }.count==0
 	@candidate = Candidate.new(params[:candidate])
 	@candidate.save
         session[:candidate_id]=@candidate.id

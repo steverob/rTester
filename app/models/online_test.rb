@@ -4,6 +4,9 @@ class OnlineTest < ActiveRecord::Base
   has_many :questions, :through=>:test_questions
   has_many :results
   has_many :test_questions
+
+  has_many :candidates, :through => :results
+
   before_destroy :clear_associations
 
   def self.all_open

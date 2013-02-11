@@ -8,8 +8,9 @@ class ResultsController < ApplicationController
     if @results.length==0
       flash[:error]="Results not available!"
       redirect_to online_test_path(@test_id)
+    else
+      Result.calculate_rank(@test_id)
     end
-    Result.calculate_rank(@test_id)
   end
 
   def print

@@ -12,7 +12,7 @@ gem 'acts-as-taggable-on', '~> 2.3.1'
 gem 'bcrypt-ruby'
 gem 'pg'
 gem 'thin'
-
+gem 'minitest','4.3.2'
 
 gem 'twitter-bootstrap-rails', '>= 2.1.6'
   gem "less-rails"

@@ -20,7 +20,11 @@ Rt::Application.routes.draw do
   match 'login' => 'sessions#new'
   match 'logout' => 'sessions#destroy'
   match 'admin/edit' => 'users#edit'
-
+  match 'test_center/instructions' => "test_center#instructions"
+  match 'test_center/test'=>'test_center#test'
+  match 'test_center/wait'=>'test_center#wait'
+  match 'test_center/finish'=>'test_center#finish'
+  match 'test_center/evaluate'=>'test_center#evaluate'
   resources :users
   # The priority is based upon order of creation:
   # first created -> highest priority.

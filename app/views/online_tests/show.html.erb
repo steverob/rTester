@@ -45,7 +45,7 @@
   <li><%= link_to raw("<i class=' icon-tasks'></i>Questions"),
               test_questions_path(@online_test.id)%></li>
   <li><%= link_to raw("<i class='icon-list-alt'></i>View Results"),
-              results_path(@online_test.id)%></li>
+              results_path({:id=>@online_test.id})%></li>
   <% if @online_test.open %><li><%= link_to raw("<i class=' icon-remove-circle'></i>Close Test"),
               close_test_path(@online_test.id),:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }%></li><%end%>
   <li><%= link_to raw("<i class=' icon-trash'></i>Delete"),

@@ -26,19 +26,18 @@ class CandidatesController < ApplicationController
   # POST /candidates
   # POST /candidates.json
   def create
-    @candidate = Candidate.new(params[:candidate])
-    respond_to do |format|
-      if @candidate.save
+      if Candidate.find_by_roll_no(params[:candidate][:roll_no]).nil?
+	@candidate = Candidate.new(params[:candidate])
+	@candidate.save
         session[:candidate_id]=@candidate.id
         TestQuestion.generate_candidate_questions(@candidate.id,session[:test_id])
         Result.generate_result(@candidate.id,session[:test_id])
         flash[:notice]='Successfully entered the Test!'
-        format.html { redirect_to :controller=>"test_center",:action=>"instructions" }
+        redirect_to :controller=>"test_center",:action=>"instructions" 
       else
-        format.html { render action: "new" }
-        format.json { render json: @candidate.errors, status: :unprocessable_entity }
+	flash[:alert]="You have already entered the test!"
+        redirect_to :controller=>"candidates",:action=>"new",:id=>session[:test_id]   
       end
-    end
   end
 
   # PUT /candidates/1

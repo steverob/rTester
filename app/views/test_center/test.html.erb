@@ -51,8 +51,8 @@
             <tr>
               <td><%=@alpha[index]%>.</td>
               <td><strong><%=ans.answer%></strong></td>
-              <td class="pull-right"><%= raw('<input type="radio"
-  class="'+question[0].to_s+' radio" name="answer['+question[1][0].id.to_s+']" value="'+ans.id.to_s+'"/>') %></td>
+              <td class=""><%= raw('<input type="radio"
+  class="'+question[0].to_s+' radio pull-right" name="answer['+question[1][0].id.to_s+']" value="'+ans.id.to_s+'"/>') %></td>
             </tr>
         <%end%>
       <%end%>

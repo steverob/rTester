@@ -7,9 +7,12 @@ class QuestionsController < ApplicationController
   def index
     @tags=Question.tag_counts_on(:tags)
     if !params[:tag_list].nil? && params[:tag_list]!=""
-      @questions=Question.tagged_with(params[:tag_list].split(","),:any=>true).paginate(:per_page=>15, :page => params[:page])
+      @questions=Question.tagged_with(params[:tag_list].split(","),:any=>true)
+      @count=@questions.count
+      @questions=@questions.paginate(:per_page=>50, :page => params[:page])
     else
-      @questions=Question.paginate(:per_page=>15, :page => params[:page]).all
+      @questions=Question.paginate(:per_page=>50, :page => params[:page]).all
+      @count=Question.all.count
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -110,7 +113,8 @@ class QuestionsController < ApplicationController
     @test_questions.each do |q|
       @questions << q.question
     end
-    @questions=@questions.paginate(:page=>params[:page],:per_page=>15)
+    @count=@questions.count
+    @questions=@questions.paginate(:page=>params[:page],:per_page=>50)
     @test=OnlineTest.find(params[:id])
 
 

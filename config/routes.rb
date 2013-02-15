@@ -13,6 +13,7 @@ Rt::Application.routes.draw do
   match '/test_center/wait' => 'test_center#wait',:as=>"wait"
   match '/test_center/finish' => 'test_center#finish'
   match "/test_center/evaluate" => 'test_center#evaluate'
+  match "/test_center/closed"=>"test_center#closed"
   scope "/administration" do
     resources :online_tests
     resources :questions

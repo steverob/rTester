@@ -3,20 +3,34 @@
 <table class="table table-condensed table-striped table-nonfluid">
   <thead>
     <tr>
-      <th>Roll No.</th>
+      <th>Prayudh ID</th>
       <th>Candidate Name</th>
-      <th><%= "Score" %></th>
+      <th>College</th>
       <th><%= "Rank" %></th>
     </tr>
   </thead>
   <tbody>
     <% @results.each do |result| %>
-      <tr>
-        <td><%= result.candidate.roll_no %></td>
-        <td><%= result.candidate.name %></td>
-        <td><%= result.score %></td>
-        <td><%= result.rank %></td>
-      </tr>
+      <% teammates=result.candidate.teammates %>
+      <% span=teammates.count %>
+          <tr>
+            <td>
+              <% teammates.each do |teammate| %>
+                <%= "#{teammate.roll_no} <br />".html_safe %>
+              <% end %>
+            </td>
+            <td>
+              <% teammates.each do |teammate| %>
+                <%= "#{teammate.name} <br />".html_safe %>
+              <% end %>
+            </td>
+            <td>
+              <% teammates.each do |teammate| %>
+                <%= "#{teammate.college} <br />".html_safe %>
+              <% end %>
+            </td>
+            <td rowspan="#{span}"><%= result.rank %></td>
+          </tr>
     <% end %>
   </tbody>
 </table>

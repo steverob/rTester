@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226140741) do
+ActiveRecord::Schema.define(:version => 20130216092140) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20121226140741) do
     t.integer  "year"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "team_id"
   end
 
   create_table "online_tests", :force => true do |t|

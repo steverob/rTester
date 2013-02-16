@@ -27,15 +27,45 @@ class CandidatesController < ApplicationController
   # POST /candidates.json
   def create
     @candidate = Candidate.new(params[:candidate])
+
+    if params["teammate_1_name"]!=""&&params["teammate_1_pid"]!=""
+     teammate_1=Candidate.new(:name=>params["teammate_1_name"],:roll_no=>params["teammate_1_pid"],:college=>params["teammate_1_college"])
+    else
+      teammate_1=Candidate.new(roll_no: "temp1")
+    end
+    if params["teammate_2_name"]!=""&&params["teammate_2_pid"]!=""
+     teammate_2=Candidate.new(:name=>params["teammate_2_name"],:roll_no=>params["teammate_2_pid"],:college=>params["teammate_2_college"])
+    else
+      teammate_2=Candidate.new(roll_no: "temp2")
+    end
     respond_to do |format|
-      if @candidate.save
+      if @candidate.save&&teammate_1.save&&teammate_2.save
         session[:candidate_id]=@candidate.id
+        @candidate.team_id=@candidate.id
+        if teammate_1.name!=nil
+          teammate_1.team_id=@candidate.id
+          teammate_1.save
+        else
+          teammate_1.destroy
+        end
+        if teammate_2.name!=nil
+          teammate_2.team_id=@candidate.id
+          teammate_2.save
+        else
+          teammate_2.destroy
+        end
+        @candidate.save
+
         TestQuestion.generate_candidate_questions(@candidate.id,session[:test_id])
         Result.generate_result(@candidate.id,session[:test_id])
         flash[:notice]='Successfully entered the Test!'
         format.html { redirect_to instructions_path }
       else
-        format.html { render action: "new" }
+        @candidate.destroy if @candidate.valid?
+        teammate_1.destroy if teammate_1.valid?
+        teammate_2.destroy if teammate_2.valid?
+        flash[:alert]="Either your or one of your teammate's ID has already been registered!"
+        format.html { redirect_to action: "new",id: session[:test_id] }
         format.json { render json: @candidate.errors, status: :unprocessable_entity }
       end
     end

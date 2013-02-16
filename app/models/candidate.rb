@@ -3,4 +3,9 @@ class Candidate < ActiveRecord::Base
 
   has_many :results
   has_many :candidate_answers
+  validates :roll_no,:uniqueness=>{:message=>"This Prayudh ID was already used to enter the test!"}
+
+  def teammates
+    Candidate.where(:team_id=>self.id)
+  end
 end

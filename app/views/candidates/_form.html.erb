@@ -1,38 +1,78 @@
 <%= form_for @candidate, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field',:pattern=>"[A-Za-z ]{3}[A-Za-z ]*", :title=>"Must be more than 3 characters!",:required=>"required",:autofocus=>"autofocus" %>
+  <div class="row">
+    <div class="span4">
+      <legend><i>Your Details</i></legend>
+      <div class="control-group">
+        <%= f.label :name, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name, :class => 'text_field',:pattern=>"[A-Za-z\. ]{3}[A-Za-z\. ]*", :title=>"Must be more than 3 characters!",:required=>"required",:placeholder=>"Your Name" %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :college, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :college, :class => 'text_field',:pattern=>"[A-Za-z\. ]{3}[A-Za-z\. ]*", :title=>"Must be more than 3 characters!",:required=>"required",:placeholder=>"College Name"  %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :prayudh_ID, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :roll_no, :class => 'text_field',:pattern=>"(P)(R)(H)[0-9][0-9][0-9][0-9]", :title=>"Enter a valid Prayudh ID!",:required=>"required",:placeholder=>"PRH0001"  %>
+          <p class="help-block">eg. PRH0001</p>
+        </div>
+      </div>
+      <hr />
+      <br />
+      <br />
+      <div class="form-actions">
+        <%= f.submit "Submit", :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    :back, :class => 'btn' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :college, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :college, :class => 'text_field',:pattern=>"[A-Za-z ]{3}[A-Za-z ]*", :title=>"Must be more than 3 characters!",:required=>"required"  %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :roll_no, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :roll_no, :class => 'text_field',:pattern=>"[A-Za-z0-9 ]{3}[A-Za-z0-9 ]*", :title=>"Must be more than 3 characters!",:required=>"required"  %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :department, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :department, :class => 'text_field',:required=>"required" %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :year, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :year, :class => 'number_field',:required=>"required",:pattern=>"[0-9]",:title=>"Are you kiddin!?" %>
+    <div class="span4">
+      <legend><i>Teammates&nbsp;&nbsp;&nbsp;<small>leave blank if there aren't any</small></i></legend>
+      <div class="control-group">
+        <%= label_tag :name, nil,:class => 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :teammate_1_name,"", :class => 'text_field',:pattern=>"[A-Za-z\. ]{3}[A-Za-z\. ]*", :title=>"Must be more than 3 characters!",:placeholder=>"Teammate's Name" %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :college, nil,:class => 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :teammate_1_college,"", :class => 'text_field',:pattern=>"[A-Za-z\. ]{3}[A-Za-z\. ]*", :title=>"Must be more than 3 characters!",:placeholder=>"Teammate's College" %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :prayudh_ID, nil, :class => 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :teammate_1_pid, nil, :class => 'text_field',:pattern=>"(P)(R)(H)[0-9][0-9][0-9][0-9]", :title=>"Enter a valid Prayudh ID!",:placeholder=>"PRH0001"  %>
+          <p class="help-block">eg. PRH0001</p>
+        </div>
+      </div>
+      <hr />
+      <div class="control-group">
+        <%= label_tag :name, nil, :class => 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :teammate_2_name, nil, :class => 'text_field',:pattern=>"[A-Za-z\. ]{3}[A-Za-z\. ]*", :title=>"Must be more than 3 characters!",:placeholder=>"Teammate's Name" %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :college, nil, :class => 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :teammate_2_college, nil, :class => 'text_field',:pattern=>"[A-Za-z\. ]{3}[A-Za-z\. ]*", :title=>"Must be more than 3 characters!",:placeholder=>"Teammate's College" %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :prayudh_ID, nil, :class => 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :teammate_2_pid, nil, :class => 'text_field',:pattern=>"(P)(R)(H)[0-9][0-9][0-9][0-9]", :title=>"Enter a valid Prayudh ID!",:placeholder=>"PRH0001"  %>
+          <p class="help-block">eg. PRH0001</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.submit "Submit", :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                :back, :class => 'btn' %>
-  </div>
+
 <% end %>

@@ -43,14 +43,21 @@
 <% for question in @questions %>
   <%= raw('<div id="q_'+question[0].to_s+'">') %>
     <hr class="double-gradient"/>
-    <span class="badge badge-important"><h5 class="question-no">Q <%=question[0]%></h5></span>&nbsp;&nbsp;&nbsp;<%=question[1][0].test_question.question.question %>
-    <br /><br />
+    <div class="row">
+      <div class="span1">
+        <span class="badge badge-important"><h5 class="question-no">Q <%=question[0]%></h5></span>
+      </div>
+      <div class="span 10">
+        <%= simple_format question[1][0].test_question.question.question %>
+      </div>
+    </div>
+    <br />
     <table class="table table-condensed">
       <% question[1].each_with_index do |ans,index| %>
         <% if ans.class==Answer %>
             <tr>
               <td><%=@alpha[index]%>.</td>
-              <td><strong><%=ans.answer%></strong></td>
+              <td><strong><%= simple_format ans.answer%></strong></td>
               <td class=""><%= raw('<input type="radio"
   class="'+question[0].to_s+' radio pull-right" name="answer['+question[1][0].id.to_s+']" value="'+ans.id.to_s+'"/>') %></td>
             </tr>

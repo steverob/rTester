@@ -10,9 +10,9 @@
   <dd><ul style="style:none;">
         <% for answer in @answers %>
           <% if answer.is_correct %>
-            <%= raw('<li>'+answer.answer+'&nbsp;&nbsp;<span class="badge badge-success">Correct</span></li>') %>
+            <%= raw('<li>'+simple_format(answer.answer)+'&nbsp;&nbsp;<span class="badge badge-success">Correct</span></li>') %>
           <%else%>
-            <%= raw('<li>'+answer.answer+'</li>') %>
+            <%= raw('<li>'+simple_format(answer.answer)+'</li>') %>
           <%end%>
         <%end%>
       </ul>

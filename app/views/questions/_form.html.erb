@@ -32,7 +32,7 @@ $(function() {
     <%- selected=false -%>
     <%= f.fields_for :answers do |form| %>
       <tr>
-        <td><%= form.text_field :answer, :class=> 'text_field row-fluid',:required=>"required"%></td>
+        <td><%= form.text_area :answer, :class=> 'text_area row-fluid span4',:rows=>2,:required=>"required"%></td>
         <td><center><%= form.check_box :is_correct, :class=>"check_box" %></center></td>
       </tr>
     <%end%>

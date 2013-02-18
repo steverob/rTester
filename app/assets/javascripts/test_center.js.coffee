@@ -16,7 +16,7 @@ jQuery ->
 
   $("div[id^='q_'] span.badge").live 'click',->
     $(@).attr("class","badge badge-warning")
-    qn=$(@).parent().attr("id").split("_")[1]
+    qn=$(@).parent().parent().parent().attr("id").split("_")[1]
     $('#'+qn).attr("class","btn btn-warning qn-nav")
 
   $("button.qn-nav").live "click",->

@@ -21,10 +21,10 @@
           <td><%=pretty_date_time(test.created_at)%></td>
           <td><%= link_to "Enter",{:controller=>"candidates",:action=>'new',:id=>test.id},:class=>"btn btn-primary btn-small" %></td>
         </tr>
-
+<% end %>
      </tbody>
     </table>
-    <% end %>
+
 
     <%end%>
   </center>

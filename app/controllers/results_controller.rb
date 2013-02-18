@@ -5,16 +5,11 @@ class ResultsController < ApplicationController
   def index
     @test_id=params[:id]
     @results=Result.calculate_rank(@test_id)
-    respond_to do |format|
-      if @results.length==0
-        flash[:error]="Results not available!"
-        redirect_to online_test_path(@test_id)
-      else
-        @results=@results.paginate(:per_page=>5,:page=>params[:page])
-        format.html
-        format.json { head :no_content }
-        format.js
-      end
+    if @results.length==0
+      flash[:error]="Results not available!"
+      redirect_to online_test_path(@test_id)
+    else
+      @results=@results.paginate(:per_page=>5,:page=>params[:page])
     end
   end
 
